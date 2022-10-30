@@ -1,0 +1,14 @@
+.elements__like {
+  min-width: 22px;
+  height: 19px;
+  background-image: url(../../../images/elements_like.svg);
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0 0 0 30px;
+}
+
+.elements__like:active {
+  background-image: url(../../../images/elements_like_active.svg);
+}

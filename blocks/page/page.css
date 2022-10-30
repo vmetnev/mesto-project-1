@@ -1,0 +1,9 @@
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+  color: #fff;
+  box-sizing: border-box;
+}
+

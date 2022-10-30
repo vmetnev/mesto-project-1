@@ -1,0 +1,9 @@
+.form {
+  padding: 25px 22px;
+}
+
+@media screen and (max-width: 540px) {
+  .form {
+    max-width: 282px;
+  }
+}

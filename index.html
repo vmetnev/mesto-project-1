@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="pages/indes.css">
+</head>
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img class="logo" src="images/logo.svg" alt="Логотип">
+    </header>
+
+    <main>
+      <section class="profile">
+        <div class="profile__inner">
+          <img class="profile__avatar" src="images/profile_avatar.jpg" alt="Аватар">
+          <div class="profile__info">
+            <div class="profile__name-container">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button class="profile__edit-button" type="button"></button>
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile__add-button" type="submit"></button>
+      </section>
+
+      <section class="elements">
+        <ul class="elements__inner">
+          <li class="elements__container">
+            <img class="elements__item" src="images/karachevsk.jpg" alt="">
+            <div class="elements__text-container">
+              <h2 class="elements__title">Карачевск</h2>
+              <button class="elements__like" type="button"></button>
+            </div>
+          </li>
+          <li class="elements__container">
+            <img class="elements__item" src="images/elbrus.jpg" alt="">
+            <div class="elements__text-container">
+              <h2 class="elements__title">Гора Эльбрус</h2>
+              <button class="elements__like" type="button"></button>
+            </div>
+          </li>
+          <li class="elements__container">
+            <img class="elements__item" src="images/dombai.jpg" alt="">
+            <div class="elements__text-container">
+              <h2 class="elements__title">Домбай</h2>
+              <button class="elements__like" type="button"></button>
+            </div>
+          </li>
+          <li class="elements__container">
+            <img class="elements__item" src="images/elbrus.jpg" alt="">
+            <div class="elements__text-container">
+              <h2 class="elements__title">Гора Эльбрус</h2>
+              <button class="elements__like" type="button"></button>
+            </div>
+          </li>
+          <li class="elements__container">
+            <img class="elements__item" src="images/dombai.jpg" alt="">
+            <div class="elements__text-container">
+              <h2 class="elements__title">Домбай</h2>
+              <button class="elements__like" type="button"></button>
+            </div>
+          </li>
+          <li class="elements__container">
+            <img class="elements__item" src="images/karachevsk.jpg" alt="">
+            <div class="elements__text-container">
+              <h2 class="elements__title">Карачаево-Черкесcия</h2>
+              <button class="elements__like" type="button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022. Соболевский Артем</p>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <form class="form">
+          <div class="form__main-container">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <fieldset class="form__input-container">
+              <input class="form__field" type="text" name="fullname" id="name" placeholder="Жак-Ив Кусто" required>
+              <input class="form__field" type="text" name="description" id="description" placeholder="Исследователь океана" required>
+            </fieldset>
+            <fieldset class="form__handlers">
+              <button type="submit" class="form__submit-button">Сохранить</button>
+            </fieldset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
