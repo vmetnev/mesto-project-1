@@ -21,3 +21,9 @@
     margin: 36px 0 0;
   }
 }
+
+@media screen and (max-width: 540px){
+  .profile__add-button {
+    background-size: 16px;
+  }
+}
