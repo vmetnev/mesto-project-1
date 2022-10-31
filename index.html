@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,53 +20,53 @@
           <div class="profile__info">
             <div class="profile__name-container">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button" type="button"></button>
+              <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button" type="submit"></button>
+        <button class="profile__add-button" type="button" aria-label="Добавить"></button>
       </section>
 
       <section class="elements">
         <ul class="elements__inner">
           <li class="elements__container">
-            <img class="elements__item" src="images/karachevsk.jpg" alt="">
+            <img class="elements__item" src="images/karachevsk.jpg" alt="Карачевск">
             <div class="elements__text-container">
               <h2 class="elements__title">Карачевск</h2>
               <button class="elements__like" type="button"></button>
             </div>
           </li>
           <li class="elements__container">
-            <img class="elements__item" src="images/elbrus.jpg" alt="">
+            <img class="elements__item" src="images/elbrus.jpg" alt="Гора Эльбрус">
             <div class="elements__text-container">
               <h2 class="elements__title">Гора Эльбрус</h2>
               <button class="elements__like" type="button"></button>
             </div>
           </li>
           <li class="elements__container">
-            <img class="elements__item" src="images/dombai.jpg" alt="">
+            <img class="elements__item" src="images/dombai.jpg" alt="Домбай">
             <div class="elements__text-container">
               <h2 class="elements__title">Домбай</h2>
               <button class="elements__like" type="button"></button>
             </div>
           </li>
           <li class="elements__container">
-            <img class="elements__item" src="images/elbrus.jpg" alt="">
+            <img class="elements__item" src="images/elbrus.jpg" alt="Гора Эльбрус">
             <div class="elements__text-container">
               <h2 class="elements__title">Гора Эльбрус</h2>
               <button class="elements__like" type="button"></button>
             </div>
           </li>
           <li class="elements__container">
-            <img class="elements__item" src="images/dombai.jpg" alt="">
+            <img class="elements__item" src="images/dombai.jpg" alt="Домбай">
             <div class="elements__text-container">
               <h2 class="elements__title">Домбай</h2>
               <button class="elements__like" type="button"></button>
             </div>
           </li>
           <li class="elements__container">
-            <img class="elements__item" src="images/karachevsk.jpg" alt="">
+            <img class="elements__item" src="images/karachevsk.jpg" alt="Карачевск">
             <div class="elements__text-container">
               <h2 class="elements__title">Карачаево-Черкесcия</h2>
               <button class="elements__like" type="button"></button>
@@ -75,25 +75,22 @@
         </ul>
       </section>
     </main>
-
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022. Соболевский Артем</p>
     </footer>
-
-    <div class="popup">
+    <div class="popup popup_opened">
       <div class="popup__container">
-        <form class="form">
-          <div class="form__main-container">
-            <h2 class="form__title">Редактировать профиль</h2>
-            <fieldset class="form__input-container">
-              <input class="form__field" type="text" name="fullname" id="name" placeholder="Жак-Ив Кусто" required>
-              <input class="form__field" type="text" name="description" id="description" placeholder="Исследователь океана" required>
-            </fieldset>
-            <fieldset class="form__handlers">
-              <button type="submit" class="form__submit-button">Сохранить</button>
-            </fieldset>
-          </div>
+        <form class="form" name="edit-profile">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <fieldset class="form__input-container">
+            <input class="form__field" type="text" name="fullname" id="name" placeholder="Введите имя" required>
+            <input class="form__field" type="text" name="description" id="description" placeholder="Введите краткое описание" required>
+          </fieldset>
+          <fieldset class="form__handlers">
+            <button type="submit" class="form__submit-button">Сохранить</button>
+          </fieldset>
         </form>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
   </div>
