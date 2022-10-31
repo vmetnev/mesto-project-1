@@ -4,3 +4,9 @@
   margin: 48px 0 0;
   width: 100%;
 }
+
+@media screen and (max-width: 540px) {
+  .form__handlers {
+    margin: 45px 0 0;
+  }
+}
