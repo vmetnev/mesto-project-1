@@ -10,10 +10,6 @@
   transition: linear 0.3s;
 }
 
-.elements__like:active {
-  background-image: url(../../../images/elements_like_active.svg);
-}
-
 .elements__like:hover {
   opacity: 0.5;
 }

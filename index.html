@@ -30,69 +30,66 @@
 
       <section class="elements">
         <ul class="elements__inner">
-          <li class="elements__container">
-            <img class="elements__item" src="images/karachevsk.jpg" alt="Карачевск">
-            <div class="elements__text-container">
-              <h2 class="elements__title">Карачевск</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__container">
-            <img class="elements__item" src="images/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="elements__text-container">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__container">
-            <img class="elements__item" src="images/dombai.jpg" alt="Домбай">
-            <div class="elements__text-container">
-              <h2 class="elements__title">Домбай</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__container">
-            <img class="elements__item" src="images/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="elements__text-container">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__container">
-            <img class="elements__item" src="images/dombai.jpg" alt="Домбай">
-            <div class="elements__text-container">
-              <h2 class="elements__title">Домбай</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__container">
-            <img class="elements__item" src="images/karachevsk.jpg" alt="Карачевск">
-            <div class="elements__text-container">
-              <h2 class="elements__title">Карачаево-Черкесcия</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
+
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022. Соболевский Артем</p>
     </footer>
-    <div class="popup popup_opened">
+
+    <div class="popup" id="popup__edit-profile">
       <div class="popup__container">
-        <form class="form" name="edit-profile">
+        <form class="form" name="edit-profile" id="profile-form">
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__input-container">
-            <input class="form__field" type="text" name="fullname" id="name" placeholder="Введите имя" required>
-            <input class="form__field" type="text" name="description" id="description" placeholder="Введите проффесию" required>
+            <input class="form__field" type="text" name="fullname" id="name" placeholder="Введите имя" value="" required>
+            <input class="form__field" type="text" name="profession" id="profession" placeholder="Введите проффесию" value="" required>
           </fieldset>
           <fieldset class="form__handlers">
             <button type="submit" class="form__submit-button">Сохранить</button>
           </fieldset>
         </form>
-        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+        <button id="profile_close-button" class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
+
+    <div class="popup" id="popup__add-card">
+      <div class="popup__container">
+        <form class="form" name="edit-profile" id="place-form">
+          <h2 class="form__title">Новое место</h2>
+          <fieldset class="form__input-container">
+            <input class="form__field" type="text" name="name" id="place-name" placeholder="Название" required>
+            <input class="form__field" type="text" name="link" id="link" placeholder="Ссылка на картинку" required>
+          </fieldset>
+          <fieldset class="form__handlers">
+            <button type="submit" class="form__submit-button">Сохранить</button>
+          </fieldset>
+        </form>
+        <button id="place_close-button" class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+    <div class="popup" id="popup__open-img">
+      <figure class="popup__img-container">
+        <img class="popup__image" src="" alt="">
+        <figcaption class="popup__caption"></figcaption>
+        <button id="img_close-button" class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </figure>
+    </div>
   </div>
+
+  <template id="card-template">
+    <li class="elements__container">
+      <img class="elements__item" src="" alt="">
+      <div class="elements__text-container">
+        <h2 class="elements__title"></h2>
+        <button class="elements__like" type="button"></button>
+      </div>
+      <button class="elements__delete" type="button"></button>
+    </li>
+  </template>
+
+<script src="script.js"></script>
 </body>
 </html>
