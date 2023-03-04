@@ -1,18 +1,18 @@
 import '../pages/index.css';
 import {createCard, addCard} from './card.js'
-import {openPopup, closePopup, handleFormSubmit, profileName, profileProfession, editProfilePopup} from './modal.js'
+import {openPopup, closePopup, profileName, profileProfession, profilePopup} from './modal.js'
 import {enableValidation} from './validate.js'
 
-const addPlacePopup = document.querySelector('#popup__add-card');
+const placePopup = document.querySelector('#popup__add-card');
 const imagePopup = document.querySelector('#popup__open-img');
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
-const closePopupButtons = document.querySelectorAll('.popup__close-button');
-const nameFormField = editProfilePopup.querySelector('#name-input');
-const professionFormField = editProfilePopup.querySelector('#profession-input');
+const profileFormButton = document.querySelector('.profile__edit-button');
+const placeFormButton = document.querySelector('.profile__add-button');
+const crossPopupButtons = document.querySelectorAll('.popup__close-button');
+const nameFormField = profilePopup.querySelector('#name-input');
+const professionFormField = profilePopup.querySelector('#profession-input');
 const profileFormElement = document.querySelector('#profile-form');
 const placeFormElement = document.querySelector('#place-form')
-const image = imagePopup.querySelector('.popup__image');
+const popupImage = imagePopup.querySelector('.popup__image');
 const caption = imagePopup.querySelector('.popup__caption');
 const cardName = document.querySelector('#place-name');
 const cardLink = document.querySelector('#place-link');
@@ -28,40 +28,49 @@ const validationSettings = {
 
 
 
-editButton.addEventListener('click', function() {
+profileFormButton.addEventListener('click', function() {
   nameFormField.value = profileName.textContent;
   professionFormField.value = profileProfession.textContent;
 
-  openPopup(editProfilePopup);
+  openPopup(profilePopup);
 });
 
 
 
-addButton.addEventListener('click', function() {
-  openPopup(addPlacePopup);
+placeFormButton.addEventListener('click', function() {
+  openPopup(placePopup );
 })
 
 
 
-closePopupButtons.forEach(function(button) {
+crossPopupButtons.forEach(function(button) {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 })
 
 
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
 
-profileFormElement.addEventListener('submit', handleFormSubmit);
+  profileName.textContent =  nameFormField.value;
+  profileProfession.textContent =  professionFormField.value;
+
+  closePopup(profilePopup);
+}
+
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 
 placeFormElement.addEventListener('submit', function(evt) {
-  addCard(createCard(cardName.value, cardLink.value));
+  evt.preventDefault();
 
-  closePopup(addPlacePopup);
+  addCard(createCard(cardName.value, cardLink.value));
+  closePopup(placePopup);
   evt.target.reset();
 })
 
 
 enableValidation(validationSettings)
-export {validationSettings, image, caption, imagePopup, nameFormField, professionFormField}
+export {validationSettings, popupImage, caption, imagePopup}
 

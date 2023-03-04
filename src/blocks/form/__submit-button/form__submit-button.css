@@ -2,10 +2,10 @@
   width: 100%;
   background-color: #000;
   color: #fff;
-  padding: 13px 0;
+  padding: 12px 0;
   cursor: pointer;
   border-radius: 2px;
-  border: 0;
+  border: 1px solid #000;
   transition: linear 0.3s;
   font-size: 18px;
   font-weight: 400;

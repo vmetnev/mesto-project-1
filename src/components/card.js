@@ -1,4 +1,4 @@
-import { image, caption, imagePopup } from './index.js'
+import { popupImage, caption, imagePopup } from './index.js'
 import { openPopup } from './modal.js';
 
 
@@ -32,37 +32,35 @@ const initialCards = [
 ]
 
 export function createCard(cardNameValue, cardLinkValue) {
-  const cardElement = cardTemplate.querySelector('.elements__container').cloneNode(true);
-  cardElement.querySelector('.elements__title').textContent = cardNameValue;
-  cardElement.querySelector('.elements__item').src = cardLinkValue;
-  cardElement.querySelector('.elements__item').alt = cardNameValue;
+  const cardContainer = cardTemplate.querySelector('.elements__container').cloneNode(true);
+  const cardElement = cardContainer.querySelector('.elements__item');
 
-  cardElement.addEventListener('click', function(evt) {
-    if (evt.target.classList.contains('elements__like')) {
-      evt.target.classList.toggle('elements__like_active');
-    }
+  cardContainer.querySelector('.elements__title').textContent = cardNameValue;
+  cardElement.src = cardLinkValue;
+  cardElement.alt = cardNameValue;
+
+  cardContainer.querySelector('.elements__like').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('elements__like_active')
   })
 
-  cardElement.addEventListener('click', function(evt) {
+  cardContainer.querySelector('.elements__delete').addEventListener('click', function(evt) {
     const elementDelete = evt.target
     const elementItem = elementDelete.closest('.elements__container');
 
-    if (evt.target.classList.contains('elements__delete')) {
-      elementItem.remove();
-    }
+    elementItem.remove();
   })
 
-  cardElement.querySelector('.elements__item').addEventListener('click', function(evt) {
+  cardElement.addEventListener('click', function(evt) {
     const elementImage = evt.target;
 
-    image.src = elementImage.src;
-    image.alt = cardElement.querySelector('.elements__title').textContent;
-    caption.textContent = cardElement.querySelector('.elements__title').textContent;
+    popupImage.src = elementImage.src;
+    popupImage.alt = cardContainer.querySelector('.elements__title').textContent;
+    caption.textContent = cardContainer.querySelector('.elements__title').textContent;
 
     openPopup(imagePopup);
   })
 
-  return cardElement
+  return cardContainer
 }
 
 
