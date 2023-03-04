@@ -6,11 +6,13 @@ const profilePopup = document.querySelector('#popup__edit-profile');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupWithEsc);
 }
 
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupWithEsc);
 }
 
 
@@ -33,7 +35,6 @@ popups.forEach((popup) => {
   popup.addEventListener('click', closePopupWithOverlay);
 })
 
-document.addEventListener('keydown', closePopupWithEsc);
 
 
 

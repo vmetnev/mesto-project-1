@@ -51,11 +51,9 @@ export function createCard(cardNameValue, cardLinkValue) {
   })
 
   cardElement.addEventListener('click', function(evt) {
-    const elementImage = evt.target;
-
-    popupImage.src = elementImage.src;
-    popupImage.alt = cardContainer.querySelector('.elements__title').textContent;
-    caption.textContent = cardContainer.querySelector('.elements__title').textContent;
+    popupImage.src = cardLinkValue;
+    popupImage.alt = cardNameValue;
+    caption.textContent = cardNameValue;
 
     openPopup(imagePopup);
   })
