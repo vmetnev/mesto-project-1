@@ -27,7 +27,6 @@ const validationSettings = {
 };
 
 
-
 profileFormButton.addEventListener('click', function() {
   nameFormField.value = profileName.textContent;
   professionFormField.value = profileProfession.textContent;
@@ -67,10 +66,10 @@ placeFormElement.addEventListener('submit', function(evt) {
 
   addCard(createCard(cardName.value, cardLink.value));
   closePopup(placePopup);
+
   evt.target.reset();
 })
 
-
-enableValidation(validationSettings)
+enableValidation(validationSettings);
 export {validationSettings, popupImage, caption, imagePopup}
 

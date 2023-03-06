@@ -36,8 +36,6 @@ popups.forEach((popup) => {
 })
 
 
-
-
 export {
   openPopup,
   closePopup,

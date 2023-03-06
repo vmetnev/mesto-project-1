@@ -1,5 +1,3 @@
-
-
 function showError(formElement, inputElement, errorMessage, settings) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`)
 
@@ -44,14 +42,20 @@ function setValidationEventListener (formElement, settings) {
 
   toggleButtonState(inputList, buttonElement, settings);
 
+  formElement.addEventListener('reset', () => {
+    setTimeout(() => {
+      toggleButtonState(inputList, buttonElement, settings);
+    }, 0)
+  })
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function() {
       checkInputValidity(formElement, inputElement, settings);
       toggleButtonState(inputList, buttonElement, settings)
     })
   })
-}
 
+}
 
 export function enableValidation(settings) {
   const formList = Array.from(document.querySelectorAll(settings.formSelector));
