@@ -2,6 +2,7 @@ const popups = document.querySelectorAll('.popup');
 const profileName = document.querySelector('.profile__title');
 const profileProfession = document.querySelector('.profile__subtitle');
 const profilePopup = document.querySelector('#popup__edit-profile');
+const avatarPopup = document.querySelector('#popup__avatar')
 
 
 function openPopup(popup) {
@@ -42,5 +43,6 @@ export {
   closePopupWithEsc,
   profileName,
   profileProfession,
-  profilePopup
+  profilePopup,
+  avatarPopup
 }

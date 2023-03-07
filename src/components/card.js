@@ -1,54 +1,68 @@
 import { popupImage, caption, imagePopup } from './index.js'
 import { openPopup } from './modal.js';
-
+import { putLikeToCard, deleteCard, deleteLikeToCard } from './api.js';
 
 const elementsContainer = document.querySelector('.elements__inner');
 const cardTemplate = document.querySelector('#card-template').content;
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]
 
-export function createCard(cardNameValue, cardLinkValue) {
+
+export function createCard(userId, card) {
   const cardContainer = cardTemplate.querySelector('.elements__container').cloneNode(true);
   const cardElement = cardContainer.querySelector('.elements__item');
+  const cardTitle = cardContainer.querySelector('.elements__title')
+  const likeButton = cardContainer.querySelector('.elements__like');
+  const likeCounter = cardContainer.querySelector('.elements__like-counter');
+  const crossButton = cardContainer.querySelector('.elements__delete');
 
-  cardContainer.querySelector('.elements__title').textContent = cardNameValue;
-  cardElement.src = cardLinkValue;
-  cardElement.alt = cardNameValue;
 
-  cardContainer.querySelector('.elements__like').addEventListener('click', function(evt) {
-    evt.target.classList.toggle('elements__like_active')
+  cardTitle.textContent = card.name;
+  cardElement.src = card.link;
+  cardElement.alt = card.name;
+  likeCounter.textContent = card.likes.length;
+
+
+  likeButton.addEventListener('click', function(evt) {
+    if (evt.target.classList.contains('elements__like_active')) {
+      deleteLikeToCard(card._id)
+        .then((res) => {
+          evt.target.classList.toggle('elements__like_active');
+          likeCounter.textContent = res.likes.length;
+        })
+    }
+    else {
+      putLikeToCard(card._id)
+        .then((res) => {
+          evt.target.classList.toggle('elements__like_active');
+          likeCounter.textContent = res.likes.length;
+        })
+    }
   })
 
-  cardContainer.querySelector('.elements__delete').addEventListener('click', function(evt) {
-    const elementDelete = evt.target
-    const elementItem = elementDelete.closest('.elements__container');
+  if (card.likes.some(like => like._id === userId)){
+    likeButton.classList.add('elements__like_active');
+  }
 
-    elementItem.remove();
-  })
+
+
+  if (userId !== card.owner._id) {
+    crossButton.remove()
+  }
+  else {
+    crossButton.addEventListener('click', function(evt) {
+      const elementDelete = evt.target
+      const elementItem = elementDelete.closest('.elements__container');
+
+      deleteCard(card._id)
+        .then(() => {
+          elementItem.remove()
+        })
+        .catch((res) => {
+          console.log(res)
+        })
+    })
+  }
+
+
 
   cardElement.addEventListener('click', function(evt) {
     popupImage.src = cardLinkValue;
@@ -61,16 +75,7 @@ export function createCard(cardNameValue, cardLinkValue) {
   return cardContainer
 }
 
-
-function loadCards(cards) {
-  for (let i = 0; i < cards.length; i++) {
-    elementsContainer.prepend(createCard(cards[i].name, cards[i].link))
-  }
-}
-loadCards(initialCards)
-
-
-
 export function addCard(card) {
   elementsContainer.prepend(card);
 }
+
