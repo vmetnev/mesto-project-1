@@ -132,7 +132,7 @@ placeFormElement.addEventListener('submit', function(evt) {
 
       addCard(createCard(userId, card));
       closePopup(placePopup);
-      avatarFormElement
+      evt.target.reset();
     })
     .catch((err) => {
       console.log(err)
