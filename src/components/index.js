@@ -50,6 +50,9 @@ Promise.all(newPromises)
       addCard(createCard(userId, card));
     })
   })
+  .catch((err) => {
+    console.log(err)
+  })
 
 
 
@@ -87,14 +90,15 @@ function handleProfileFormSubmit(evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileProfession.textContent = data.about;
+      closePopup(profilePopup);
+      evt.target.reset();
     })
     .catch((err) => {
-      console.log(res)
+      console.log(err)
     })
     .finally(() => {
       profileButtonSubmit.textContent = 'Сохранение';
     })
-  closePopup(profilePopup);
 }
 
 
@@ -105,6 +109,8 @@ function handleAvatarFormSubmit(evt) {
   changeAvatar(avatarLink.value)
     .then((res) => {
       avatar.src = res.avatar;
+      closePopup(avatarPopup);
+      evt.target.reset();
     })
     .catch((err) => {
       console.log(err)
@@ -112,7 +118,6 @@ function handleAvatarFormSubmit(evt) {
     .finally(() => {
       avatarButtonSubmit.textContent  = 'Сохранение';
     })
-  closePopup(avatarPopup);
 }
 
 
@@ -127,6 +132,7 @@ placeFormElement.addEventListener('submit', function(evt) {
 
       addCard(createCard(userId, card));
       closePopup(placePopup);
+      avatarFormElement
     })
     .catch((err) => {
       console.log(err)
@@ -134,9 +140,6 @@ placeFormElement.addEventListener('submit', function(evt) {
     .finally(() => {
       placeButtonSubmit.textContent = 'Сохранение';
     })
-
-  closePopup(placePopup);
-  evt.target.reset();
 })
 
 

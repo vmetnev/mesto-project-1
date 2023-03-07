@@ -28,12 +28,18 @@ export function createCard(userId, card) {
           evt.target.classList.toggle('elements__like_active');
           likeCounter.textContent = res.likes.length;
         })
+        .catch((err) => {
+          console.log(err)
+        })
     }
     else {
       putLikeToCard(card._id)
         .then((res) => {
           evt.target.classList.toggle('elements__like_active');
           likeCounter.textContent = res.likes.length;
+        })
+        .catch((err) => {
+          console.log(err)
         })
     }
   })
@@ -64,10 +70,10 @@ export function createCard(userId, card) {
 
 
 
-  cardElement.addEventListener('click', function(evt) {
-    popupImage.src = cardLinkValue;
-    popupImage.alt = cardNameValue;
-    caption.textContent = cardNameValue;
+  cardElement.addEventListener('click', function() {
+    popupImage.src = card.link;
+    popupImage.alt = card.name;
+    caption.textContent = card.name;
 
     openPopup(imagePopup);
   })

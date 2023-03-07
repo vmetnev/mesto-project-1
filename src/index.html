@@ -43,8 +43,8 @@
       <div class="popup__container">
         <form class="form" name="edit-profile" id="profile-form" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
-          <fieldset class="form__input-container">
-            <label class="form__field">
+          <div class="form__input-container">
+            <div class="form__field">
               <input class="form__input" type="text" name="fullname" id="name-input"
                      placeholder="Введите имя"
                      pattern="^[a-zA-ZА-Яа-яЁё -]+$"
@@ -55,9 +55,9 @@
                      data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
                      required>
               <span class="name-input-error form__field-error"></span>
-            </label>
+            </div>
 
-            <label class="form__field">
+            <div class="form__field">
               <input class="form__input" type="text" name="profession" id="profession-input"
                      placeholder="Введите проффесию"
                      pattern="^[a-zA-ZА-Яа-яЁё -]+$"
@@ -68,11 +68,11 @@
                      data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
                      required>
               <span class="profession-input-error form__field-error"></span>
-            </label>
-          </fieldset>
-          <fieldset class="form__handlers">
+            </div>
+          </div>
+          <div class="form__handlers">
             <button type="submit" class="form__submit-button">Сохранить</button>
-          </fieldset>
+          </div>
         </form>
         <button id="profile_close-button" class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
@@ -82,8 +82,8 @@
       <div class="popup__container">
         <form class="form" name="place-profile" id="place-form" novalidate>
           <h2 class="form__title">Новое место</h2>
-          <fieldset class="form__input-container">
-            <label class="form__field">
+          <div class="form__input-container">
+            <div class="form__field">
               <input class="form__input" type="text" name="name" id="place-name"
                      placeholder="Название"
                      pattern="^[a-zA-ZА-Яа-яЁё -]+$"
@@ -93,20 +93,20 @@
                      data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
                      required>
               <span class="place-name-error form__field-error"></span>
-            </label>
+            </div>
 
-            <label class="form__field">
+            <div class="form__field">
               <input class="form__input" type="url" name="link" id="place-link"
                      placeholder="Ссылка на картинку"
                      data-missing-message="Вы пропустили это поле"
                      data
                      required>
               <span class="place-link-error form__field-error"></span>
-            </label>
-          </fieldset>
-          <fieldset class="form__handlers">
+            </div>
+          </div>
+          <div class="form__handlers">
             <button type="submit" class="form__submit-button">Сохранить</button>
-          </fieldset>
+          </div>
         </form>
         <button id="place_close-button" class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
@@ -124,19 +124,19 @@
       <div class="popup__container">
         <form class="form" name="avatar-form" id="avatar-form" novalidate>
           <h2 class="form__title">Обновить аватар</h2>
-          <fieldset class="form__input-container">
-            <label class="form__field">
+          <div class="form__input-container">
+            <div class="form__field">
               <input class="form__input" type="url" name="" id="avatar-link"
                      placeholder="Ссылка на картинку"
                      data-missing-message="Вы пропустили это поле"
                      data
                      required>
               <span class="avatar-link-error form__field-error"></span>
-            </label>
-          </fieldset>
-          <fieldset class="form__handlers">
+            </div>
+          </div>
+          <div class="form__handlers">
             <button type="submit" class="form__submit-button">Сохранить</button>
-          </fieldset>
+          </div>
         </form>
       </div>
 

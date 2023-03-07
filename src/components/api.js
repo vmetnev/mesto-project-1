@@ -23,6 +23,9 @@ function getUserData() {
     .then((res) => {
       return getResponseData(res);
     })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 
