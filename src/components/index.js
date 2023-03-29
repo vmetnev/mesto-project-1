@@ -2,7 +2,8 @@ import '../pages/index.css'
 
 import {
   createCard,
-  addCard
+  addCard,
+  Card
 } from './card.js'
 
 import {
@@ -21,6 +22,9 @@ import {
 import Api from './Api.js';
 
 const api = new Api()
+
+import Section from './Section'
+
 
 const placePopup = document.querySelector('#popup__add-card');
 const imagePopup = document.querySelector('#popup__open-img');
@@ -54,23 +58,30 @@ const validationSettings = {
 
 
 const newPromises = [api.getUserData(), api.getInitialCards()]
-
+let userId = ""
 Promise.all(newPromises)
   .then(([dataProfile, initialCards]) => {
-    const userId = dataProfile._id
+    userId = dataProfile._id
     profileName.textContent = dataProfile.name;
     profileProfession.textContent = dataProfile.about;
     avatar.src = dataProfile.avatar;
 
-    initialCards.forEach((card) => {
-      addCard(createCard(userId, card));
-    })
-  })
-  .catch((err) => {
+    const section = new Section({
+      initialCards,
+      renderer
+    }, '.elements__inner')
+
+  }).catch((err) => {
     console.log(err)
   })
 
-
+function renderer(items, target) {  
+  items.forEach((item) => {
+    const card = new Card(userId, item, '.card-template', api)
+    const cardElement = card.generate();
+    document.querySelector(target).append(cardElement);
+  });
+}
 
 
 profileFormButton.addEventListener('click', function () {
