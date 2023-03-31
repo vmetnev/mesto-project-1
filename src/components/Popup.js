@@ -37,8 +37,10 @@ class Popup {
     })
 
     // close on overlay click
-    this.el.addEventListener('click', (evt) => {
+    this.el.addEventListener('click', (evt) => {    
+      console.log('here on close on overlay')  
       if (evt.currentTarget === evt.target) {
+        console.log('here on close on overlay')
         this.close()
       }
     })
@@ -77,6 +79,16 @@ class PopupWithForm extends Popup {
     this.el.querySelector('.popup__close-button').addEventListener('click', (evt) => {
       this.close()
     })
+
+    // close on close on overlay
+    this.el.addEventListener('click', (evt) => {    
+      console.log('here on close on overlay')  
+      if (evt.currentTarget === evt.target) {
+        console.log('here on close on overlay')
+        this.close()
+      }
+    })
+
   }
 
   open() {
@@ -93,8 +105,20 @@ class PopupWithForm extends Popup {
   }
 
   close() {
-    console.log('closing')
+    
     this.el.classList.remove('popup_opened')
+
+    let errorSpans = this.form.querySelectorAll('.form__field-error')
+    errorSpans.forEach(errorSpan=>{
+      errorSpan.textContent = ""
+    })
+    
+    let errorInputs = this.form.querySelectorAll('.form__input_type_error')
+    errorInputs.forEach(errorInput=>{
+      console.log('found')
+      errorInput.classList.remove('form__input_type_error') 
+    })
+
     this.form.reset()
   }
 }

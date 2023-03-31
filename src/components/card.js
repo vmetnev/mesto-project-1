@@ -37,8 +37,7 @@ class Card {
 
   _setEventListeners() {
     // open view popup
-    this._element.querySelector('.elements__item').addEventListener('click',  (evt)=> {
-      console.log(evt.target)      
+    this._element.querySelector('.elements__item').addEventListener('click',  (evt)=> {        
       this.popupWithImage.open(evt.target.src, evt.target.alt)
     })
 

@@ -9,8 +9,17 @@ import {
 } from './UserInfo'
 
 import {
-  enableValidation
-} from './validate.js'
+  FormValidator
+} from './FormValidator.js'
+
+const validationSettings = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit-button',
+  inactiveButtonClass: 'form__submit-button_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__field-error_active'
+};
 
 import {
   PopupWithImage,
@@ -18,10 +27,13 @@ import {
 } from './Popup.js'
 
 const popupWithImage = new PopupWithImage('.popup__open-image')
-
-const popupEditProfle = new PopupWithForm('.popup__edit-profile', handleProfileFormSubmit)
+const popupEditProfile = new PopupWithForm('.popup__edit-profile', handleProfileFormSubmit)
 const popupAddCard = new PopupWithForm('.popup__add-card', handleNewPlaceFormSubmit)
-const popupChangeAvatar = new PopupWithForm('.popup__avatar',handleAvatarFormSubmit)
+const popupChangeAvatar = new PopupWithForm('.popup__avatar', handleAvatarFormSubmit)
+
+const validatorPopupEditProfile = new FormValidator(validationSettings, popupEditProfile.form)
+const validatorPopupAddCard = new FormValidator(validationSettings, popupAddCard.form)
+const validatorPopupChangeAvatar = new FormValidator(validationSettings, popupChangeAvatar.form)
 
 import Api from './Api.js';
 
@@ -34,14 +46,8 @@ const profileFormButton = document.querySelector('.profile__edit-button');
 const placeFormButton = document.querySelector('.profile__add-button');
 const avatarFormButton = document.querySelector('.profile__avatar-button');
 
-const validationSettings = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit-button',
-  inactiveButtonClass: 'form__submit-button_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__field-error_active'
-};
+
+
 
 const newPromises = [api.getUserData(), api.getInitialCards()]
 let userId = ""
@@ -71,12 +77,12 @@ function renderer(items, target) {
 // ######################################################################################
 
 profileFormButton.addEventListener('click', function () {
-  popupEditProfle.open()
+  popupEditProfile.open()
 });
 
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data).then(data => {
-    popupEditProfle.close()    
+    popupEditProfile.close()
   })
 }
 
@@ -86,7 +92,7 @@ placeFormButton.addEventListener('click', () => {
   popupAddCard.open();
 })
 
-function handleNewPlaceFormSubmit(data) {  
+function handleNewPlaceFormSubmit(data) {
   api.saveNewCard(data.name, data.link).then(resp => {
     console.log(resp)
     let newCard = new Card(userId, resp, '.card-template', api, popupWithImage)
@@ -102,14 +108,12 @@ avatarFormButton.addEventListener('click', function () {
   popupChangeAvatar.open();
 })
 
-function handleAvatarFormSubmit(data) {    
+function handleAvatarFormSubmit(data) {
   userInfo.setAvatar(data.link).then(resp => {
     popupChangeAvatar.close();
   })
 }
 
 // ######################################################################################
-
-enableValidation(validationSettings)
 
 
