@@ -1,3 +1,18 @@
+
+class FormValidator{
+  constructor(){
+
+
+    this.enableValidation()
+  }
+
+
+  enableValidation(){
+
+  }
+}
+
+
 function showError(formElement, inputElement, errorMessage, settings) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`)
 
@@ -84,3 +99,4 @@ function toggleButtonState(inputList, buttonElement, settings) {
   }
 }
 
+export {FormValidator}

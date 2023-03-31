@@ -1,8 +1,6 @@
 import '../pages/index.css'
 
 import {
-  // createCard,
-  // addCard,
   Card
 } from './Card.js'
 
@@ -22,6 +20,19 @@ import {
 import {
   enableValidation
 } from './validate.js'
+
+import {
+  Popup,
+  PopupWithImage,
+  PopupWithForm
+} from './Popup.js'
+
+const popupWithImage = new PopupWithImage('.popup__open-image')
+
+const popupEditProfle = new PopupWithForm('.popup__edit-profile')
+const popupAddCard = new PopupWithForm('.popup__add-card')
+const popupChangeAvatar = new PopupWithForm('.popup__avatar')
+
 
 import Api from './Api.js';
 
@@ -60,15 +71,15 @@ const validationSettings = {
   errorClass: 'form__field-error_active'
 };
 
-
 const newPromises = [api.getUserData(), api.getInitialCards()]
 let userId = ""
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar', api)
 let section = ""
+
 Promise.all(newPromises)
   .then(([dataProfile, initialCards]) => {
     userId = dataProfile._id
-     section = new Section({
+    section = new Section({
       initialCards,
       renderer
     }, '.elements__inner')
@@ -79,12 +90,11 @@ Promise.all(newPromises)
 
 function renderer(items, target) {
   items.forEach((item) => {
-    const card = new Card(userId, item, '.card-template', api)
+    const card = new Card(userId, item, '.card-template', api, popupWithImage)
     const cardElement = card.generate();
     document.querySelector(target).append(cardElement); // это тоже должно быть через секцию
   });
 }
-
 
 profileFormButton.addEventListener('click', function () {
   nameFormField.value = profileName.textContent;
@@ -92,21 +102,22 @@ profileFormButton.addEventListener('click', function () {
   openPopup(profilePopup);
 });
 
-
-
 placeFormButton.addEventListener('click', function () {
   openPopup(placePopup);
 })
-
 
 avatarFormButton.addEventListener('click', function () {
   openPopup(avatarPopup);
 })
 
-crossPopupButtons.forEach(function (button) {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-})
+
+// cross close popup all
+// crossPopupButtons.forEach(function (button) {
+//   const popup = button.closest('.popup');
+//   button.addEventListener('click', () => closePopup(popup));
+// })
+
+
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -140,7 +151,7 @@ placeFormElement.addEventListener('submit', function (evt) {
   let newCard = new Card(userId, {
     name: cardName.value,
     link: cardLink.value
-  }, '.card-template', api)
+  }, '.card-template', api, popupWithImage)
   const newCardElement = newCard.generate();
   newCard.pushCardInfoToServer().then(data => {
     console.log(data)
@@ -156,6 +167,7 @@ profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 avatarFormElement.addEventListener('submit', handleAvatarFormSubmit);
 
 enableValidation(validationSettings)
+
 export {
   validationSettings,
   popupImage,
