@@ -1,14 +1,3 @@
-import {
-  popupImage, // Это все должно быть через связываение колбеком popupa
-  caption,
-  imagePopup
-} from './index.js'
-import {
-  openPopup
-} from './modal.js';
-
-
-
 class Card {
   constructor(userId, card, selector, api, popupWithImage) {
     this.userId = userId
@@ -25,17 +14,6 @@ class Card {
       .querySelector('.elements__container')
       .cloneNode(true);
     return cardElement;
-  }
-
-  pushCardInfoToServer() {
-    return new Promise((resolve, reject) => {
-      this.api.saveNewCard(this.card.name, this.card.link).then(resp => {
-        this.card = resp
-        resolve(resp)
-      }).catch(error => {
-        reject(error)
-      })
-    })
   }
 
   generate() {

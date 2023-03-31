@@ -1,11 +1,8 @@
 
 class FormValidator{
   constructor(){
-
-
     this.enableValidation()
   }
-
 
   enableValidation(){
 
