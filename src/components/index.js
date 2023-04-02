@@ -22,9 +22,13 @@ const validationSettings = {
 };
 
 import {
-  PopupWithImage,
   PopupWithForm
-} from './Popup.js'
+} from './PopupWithForm.js'
+
+
+import {
+  PopupWithImage
+} from './PopupWithImage.js'
 
 const popupWithImage = new PopupWithImage('.popup__open-image')
 const popupEditProfile = new PopupWithForm('.popup__edit-profile', handleProfileFormSubmit)
@@ -41,13 +45,9 @@ const api = new Api()
 
 import Section from './Section'
 
-
 const profileFormButton = document.querySelector('.profile__edit-button');
 const placeFormButton = document.querySelector('.profile__add-button');
 const avatarFormButton = document.querySelector('.profile__avatar-button');
-
-
-
 
 const newPromises = [api.getUserData(), api.getInitialCards()]
 let userId = ""
@@ -76,7 +76,7 @@ function renderer(items, target) {
 
 // ######################################################################################
 
-profileFormButton.addEventListener('click', function () {
+profileFormButton.addEventListener('click',  ()=> {
   popupEditProfile.open()
 });
 
@@ -93,18 +93,17 @@ placeFormButton.addEventListener('click', () => {
 })
 
 function handleNewPlaceFormSubmit(data) {
-  api.saveNewCard(data.name, data.link).then(resp => {
-    console.log(resp)
+  api.saveNewCard(data.name, data.link).then(resp => {    
     let newCard = new Card(userId, resp, '.card-template', api, popupWithImage)
     const newCardElement = newCard.generate();
     section.addItem(newCardElement)
-  })
-  popupAddCard.close()
+    popupAddCard.close()
+  }) 
 }
 
 // ######################################################################################
 
-avatarFormButton.addEventListener('click', function () {
+avatarFormButton.addEventListener('click',  ()=> {
   popupChangeAvatar.open();
 })
 
@@ -115,5 +114,3 @@ function handleAvatarFormSubmit(data) {
 }
 
 // ######################################################################################
-
-
